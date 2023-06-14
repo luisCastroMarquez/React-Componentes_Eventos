@@ -5,6 +5,7 @@ export default function Formulario () {
         name: '',
         email: '',
         password: '',
+        confirmPassword: '',
     });
 
     const handleInputChange = (e) => {
@@ -47,6 +48,15 @@ export default function Formulario () {
                     type="password"
                     name="password"
                     value={formValues.password}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div>
+            <label> Confirmar Contraseña :</label>
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formValues.confirmPassword}
                     onChange={handleInputChange}
                 />
             </div>
