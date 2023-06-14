@@ -8,6 +8,12 @@ export default function Formulario () {
         confirmPassword: '',
     });
 
+    const [formErrors, setFormErrors] = useState({
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues((prevValues) => ({
@@ -18,8 +24,28 @@ export default function Formulario () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Formulario enviado: ', formValues);
+
+        let isValid = true;
+        const errors = {};
+
         // crear acciones formulario
+        if (!/\S+@\S+\.\S+/.test(formValues.email)) {
+            isValid = false;
+            Errors.email =' Por favor , ingresa un correo electronico';
+        }
+
+        if (formValues.password !== formValues.confirmPassword) {
+            isValid = false;
+            Errors.confirmPassword = 'Las contraseñas no coinciden.';
+        }
+
+        setFormErrors(errors);
+
+        if (isValid) {
+            console.log('Formulario enviado correctamente:', formValues);
+        }   else {
+            console.log('Formulario invalido:', formValues);
+        }
     };
 
     return (
@@ -41,6 +67,7 @@ export default function Formulario () {
                     value={formValues.email}
                     onChange={handleInputChange}
                 />
+                {formErrors.email && <span>{formErrors.email}</span>}
             </div>
             <div>
             <label>Contraseña :</label>
@@ -59,6 +86,7 @@ export default function Formulario () {
                     value={formValues.confirmPassword}
                     onChange={handleInputChange}
                 />
+                {formErrors.confirmPassword && <span>{formErrors.confirmPassword}</span>}
             </div>
             <button type="submit">Registrar</button>
         </form>
