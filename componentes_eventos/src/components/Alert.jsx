@@ -1,9 +1,18 @@
-export default function Alert() {
+export default function Alert({ message, onClose, type }) {
+    const getColorClass = () => {
+        if (type === 'success') {
+            return 'alert-success';
+        }  else if (type === 'danger') {
+            return 'alert-danger';
+        }  else {
+            return '';
+        }
+    };
+
     return (
-        <div>
-            <h3>Alertas :</h3>
-            <p>Registro Exitoso!</p>
-            {/* Puede agregar mas alertas   */}
+        <div className={`alert ${getColorClass()}`}>
+            <p>{message}</p>
+            <button onClick={onClose}>Cerrar</button>
         </div>
     );
 }
