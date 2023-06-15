@@ -6,11 +6,11 @@ import Alert from './Alert';
 import { FaFacebook, FaTwitter, FaGoogle } from 'react-icons/fa';
 
 export default function Registro() {
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('null');
     const [isFormComplete, setIsFormComplete] = useState(false);
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
         if (isFormComplete) {
             setMessage({ text: 'Registro aprobado. ¡Bienvenido!', type: 'success' });
         } else {
@@ -27,14 +27,17 @@ export default function Registro() {
     };
 
     return (
-        <div>
-            <h2>Crear una Cuenta</h2>
+        <div className="card d-flex flex-column "
+            style={{ width: '300px', height: '470px', margin: '12px', border:'solid 1px #000000',
+            borderRadius: '26px', textAlign:'center'}}>
+            <h2> Crear una Cuenta </h2>
             <SocialButton icon={<FaFacebook/>} />
             <SocialButton icon={<FaTwitter/>}/>
             <SocialButton icon={<FaGoogle/>} />
             <h5>O usa tu Correo para Registrarte </h5>
             <Formulario onInputChange={handleInputChange} onSubmit={handleFormSubmit} />
-            {message && <Alert message={message} type={message.type} />}
+            {message &&
+            <Alert message={message} />}
         </div>
     );
 }

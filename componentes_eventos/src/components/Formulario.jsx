@@ -12,7 +12,7 @@ export default function Formulario ({ onInputChange, onSubmit}) {
         e.preventDefault();
 
         if (nombre === '' || email === '' || contrasena === '' || confirmContrasena === '') {
-            alert('Por favor, completa todos los campos del formulario.');
+            setMensajeErrors('Por favor, completa todos los campos del formulario.');
             setMensajeExito('');
             return;
         }
@@ -27,52 +27,68 @@ export default function Formulario ({ onInputChange, onSubmit}) {
         setMensajeExito('Formulario completado correctamente.');
 
         // Resto de la lógica de validación y procesamiento del formulario
-        onSubmit(); // Llamada a la función onSubmit pasada como prop
+        onSubmit(e); // Llamada a la función onSubmit pasada como prop
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-        {mensajeErrors && <div className="errors-message">{mensajeErrors}</div>}
-        {mensajeExito && <div className="success-message">{mensajeExito}</div>}
-            <div>
+        <form onSubmit={handleSubmit} style={{ Width:'360px', height:'170px',  margin: '0 auto' }}>
+            <div style={{ width: '300px'}}>
                 <label htmlFor="nombre"></label>
-                <input
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
                     type="text"
                     id="nombre"
                     placeholder="Nombre"
-                    value={nombre} onChange={(e) => setNombre(e.target.value)}
+                    value={nombre}
+                    onChange={(e) => { setNombre(e.target.value)
+                    onInputChange(e);}}
                 />
             </div>
-            <div>
-                <label htmlFor="email"></label>
-                <input
+            <div >
+                <label htmlFor="email" style={{width: '200px'}}></label>
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
                     type="email"
                     id="email"
                     placeholder="Tumail@ejemplo.com"
-                    value={email} onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    onChange={(e) => {
+                    setEmail(e.target.value);
+                    onInputChange(e);
+                }}
                 />
                 {mensajeErrors.email && <span>{mensajeErrors.email}</span>}
             </div>
             <div>
                 <label htmlFor="contrasena"></label>
-                <input
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
                     type="password"
                     id="contrasena"
                     placeholder="Contraseña"
-                    value={contrasena} onChange={(e) => setContrasena(e.target.value)}
+                    value={contrasena}
+                    onChange={(e) => {
+                        setContrasena(e.target.value);
+                        onInputChange(e);
+                    }}
                 />
             </div>
             <div>
                 <label htmlFor="confirmContrasena"></label>
-                <input
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
                     type="password"
                     id="confirmContrasena"
                     placeholder="Confirmar tu Contraseña"
-                    value={confirmContrasena} onChange={(e) => setConfirmContrasena(e.target.value)}
+                    value={confirmContrasena}
+                    onChange={(e) => {
+                        setConfirmContrasena(e.target.value);
+                        onInputChange(e);
+                    }}
                 />
                 {mensajeErrors.confirmContrasena && <span>{mensajeErrors.confirmContrasena}</span>}
             </div>
-            <button type="submit">Registrar</button>
+            <div className=''>
+                <button style={{ width: '230px', height: '28px', borderRadius: '7px'}} type="submit">Registrar</button>
+                {mensajeErrors && <div className="errors-message">{mensajeErrors}</div>}
+                {mensajeExito && <div className="success-message">{mensajeExito}</div>}
+            </div>
         </form>
     );
 };

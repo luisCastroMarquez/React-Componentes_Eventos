@@ -11,8 +11,7 @@ export default function Alert({ message, onClose, type }) {
 
     return (
         <div className={`alert ${getColorClass()}`}>
-            <p>{message}</p>
-            <button onClick={onClose}>Cerrar</button>
+            <p>{message.onClose}</p>
         </div>
     );
 }
