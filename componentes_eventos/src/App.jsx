@@ -12,8 +12,8 @@ export default function App() {
     };
 
     return (
-        <div>
-            <Registro/>
+        <div className=''>
+            <Registro />
             {message && <Alert message={message} onClose={handleAlertClose} color={alertColor} />}
         </div>
     );

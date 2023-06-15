@@ -1,92 +1,76 @@
 import { useState } from 'react';
 
-export default function Formulario () {
-    const [formValues, setFormValues] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    });
-
-    const [formErrors, setFormErrors] = useState({
-        email: '',
-        password: '',
-        confirmPassword: '',
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            [name]: value,
-        }));
-    };
+export default function Formulario ({ onInputChange, onSubmit}) {
+    const [nombre, setNombre] = useState('');
+    const [email, setEmail] = useState('');
+    const [contrasena, setContrasena] = useState('');
+    const [confirmContrasena, setConfirmContrasena] = useState('');
+    const [mensajeErrors, setMensajeErrors] = useState('');
+    const [mensajeExito, setMensajeExito] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let isValid = true;
-        const errors = {};
-
-        // crear acciones formulario
-        if (!/\S+@\S+\.\S+/.test(formValues.email)) {
-            isValid = false;
-            Errors.email =' Por favor , ingresa un correo electronico';
+        if (nombre === '' || email === '' || contrasena === '' || confirmContrasena === '') {
+            alert('Por favor, completa todos los campos del formulario.');
+            setMensajeExito('');
+            return;
         }
 
-        if (formValues.password !== formValues.confirmPassword) {
-            isValid = false;
-            Errors.confirmPassword = 'Las contraseñas no coinciden.';
+        if (contrasena !== confirmContrasena) {
+            setMensajeErrors('Las contraseñas no coinciden.');
+            setMensajeExito('');
+            return;
         }
 
-        setFormErrors(errors);
+        setMensajeErrors('');
+        setMensajeExito('Formulario completado correctamente.');
 
-        if (isValid) {
-            console.log('Formulario enviado correctamente:', formValues);
-        }   else {
-            console.log('Formulario invalido:', formValues);
-        }
+        // Resto de la lógica de validación y procesamiento del formulario
+        onSubmit(); // Llamada a la función onSubmit pasada como prop
     };
 
     return (
         <form onSubmit={handleSubmit}>
+        {mensajeErrors && <div className="errors-message">{mensajeErrors}</div>}
+        {mensajeExito && <div className="success-message">{mensajeExito}</div>}
             <div>
-                <label>Nombre :</label>
+                <label htmlFor="nombre"></label>
                 <input
                     type="text"
-                    name="name"
-                    value={formValues.name}
-                    onChange={handleInputChange}
+                    id="nombre"
+                    placeholder="Nombre"
+                    value={nombre} onChange={(e) => setNombre(e.target.value)}
                 />
             </div>
             <div>
-                <label>Correo Electronico :</label>
+                <label htmlFor="email"></label>
                 <input
                     type="email"
-                    name="email"
-                    value={formValues.email}
-                    onChange={handleInputChange}
+                    id="email"
+                    placeholder="Tumail@ejemplo.com"
+                    value={email} onChange={(e) => setEmail(e.target.value)}
                 />
-                {formErrors.email && <span>{formErrors.email}</span>}
+                {mensajeErrors.email && <span>{mensajeErrors.email}</span>}
             </div>
             <div>
-            <label>Contraseña :</label>
+                <label htmlFor="contrasena"></label>
                 <input
                     type="password"
-                    name="password"
-                    value={formValues.password}
-                    onChange={handleInputChange}
+                    id="contrasena"
+                    placeholder="Contraseña"
+                    value={contrasena} onChange={(e) => setContrasena(e.target.value)}
                 />
             </div>
             <div>
-            <label> Confirmar Contraseña :</label>
+                <label htmlFor="confirmContrasena"></label>
                 <input
                     type="password"
-                    name="confirmPassword"
-                    value={formValues.confirmPassword}
-                    onChange={handleInputChange}
+                    id="confirmContrasena"
+                    placeholder="Confirmar tu Contraseña"
+                    value={confirmContrasena} onChange={(e) => setConfirmContrasena(e.target.value)}
                 />
-                {formErrors.confirmPassword && <span>{formErrors.confirmPassword}</span>}
+                {mensajeErrors.confirmContrasena && <span>{mensajeErrors.confirmContrasena}</span>}
             </div>
             <button type="submit">Registrar</button>
         </form>

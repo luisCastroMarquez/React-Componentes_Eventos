@@ -1,11 +1,7 @@
-
-export default function SocialButton ({icon}) {
+export default function SocialButton({ icon }) {
     return (
-        <div>
-            <h3>Registrate Aqui :</h3>
             <button>
-                <i className={'fa fa-${icon}'}/> {icon}
+                <i className={`fa fa-${icon}`} style={{ marginRight: '5px', display: 'inline-block' }} /> {icon}
             </button>
-        </div>
     );
 }
