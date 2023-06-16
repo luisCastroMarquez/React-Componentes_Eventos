@@ -10,24 +10,30 @@ export default function App() {
         setMessage('');
         setAlertColor('');
     };
-            // Restablece los mensajes despues del formulario
+    // Restablece los mensajes despues del formulario
     useEffect(() => {
         if (message || alertColor) {
             const timer = setTimeout(() => {
                 setMessage('');
                 setAlertColor('');
-            },  2000);
+            },  5000);
 
-            return () => clearTimeout(timer);
+            return () => {
+                clearTimeout(timer);
+                setMessage('');
+                setAlertColor('');
+            };
         }
     }, [message, alertColor]);
 
     return (
-        <>
-            <div className=''>
-                <Registro onSubmit={handleAlertClose}/>
-                {message && <Alert message={message} onClose={handleAlertClose} color={alertColor} />}
-            </div>
-        </>
+        <div className=''>
+            <Registro onSubmit={() => {
+                setMessage('Formulario completado correctamente.');
+                setAlertColor('success');
+                }}
+            />
+            {message && <Alert message={message} onClose={handleAlertClose} color={alertColor} />}
+        </div>
     );
 }

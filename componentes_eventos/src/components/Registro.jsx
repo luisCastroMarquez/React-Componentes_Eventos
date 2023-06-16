@@ -12,9 +12,9 @@ export default function Registro() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         if (isFormComplete) {
-            setMessage({ text: 'Registro aprobado. ¡Bienvenido!', type: 'success' });
+            setMessage({ text: '', type: 'success' });
         } else {
-            setMessage({ text: 'Por favor, completa todos los campos del formulario.', type: 'error' });
+            setMessage({ text: 'Completa todos los campos!', type: 'error' });
         }
     };
 
@@ -27,9 +27,8 @@ export default function Registro() {
     };
 
     return (
-        <div className="card d-flex flex-column-center "
-            style={{ width: '300px', height: '470px', margin: '12px', border:'solid 1px #000000',
-            borderRadius: '26px', textAlign:'center'}}>
+        <div className="card d-flex flex-column-center" style={{ width: '300px', height: '500px', margin: '12px',
+                                border:'solid 1px #000000', borderRadius: '26px', textAlign:'center',}}>
             <h2> Crear una Cuenta </h2>
             <SocialButton icon={<FaFacebook/>} />
             <SocialButton icon={<FaTwitter/>}/>
@@ -37,7 +36,7 @@ export default function Registro() {
             <h5>O usa tu Correo para Registrarte </h5>
             <Formulario onInputChange={handleInputChange} onSubmit={handleFormSubmit} />
             {message &&
-            <Alert message={message} />}
+            <Alert message={message.text} />}
         </div>
     );
 }

@@ -6,7 +6,8 @@ export default function SocialButton({ icon }) {
                             margin: '3px',
                             display: 'inline-block',
                             fontSize: '20px',
-                        border:'solid 1px #000000',borderRadius: '50px'}}>
+                            border:'solid 1px #000000',
+                            borderRadius: '50px'}}>
                 <i className={`fa fa-${icon}`} /> {icon}
             </button>
     );
