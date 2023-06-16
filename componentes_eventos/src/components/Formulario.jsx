@@ -28,13 +28,18 @@ export default function Formulario ({ onInputChange, onSubmit}) {
 
         // Resto de la lógica de validación y procesamiento del formulario
         onSubmit(e); // Llamada a la función onSubmit pasada como prop
+
+        setNombre('');
+        setEmail('');
+        setContrasena('');
+        setConfirmContrasena('');
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ Width:'360px', height:'170px',  margin: '0 auto' }}>
-            <div style={{ width: '300px'}}>
+        <form onSubmit={handleSubmit} style={{ Width:'360px', height:'200px' }}>
+            <div>
                 <label htmlFor="nombre"></label>
-                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px', margin: '5px'}}
                     type="text"
                     id="nombre"
                     placeholder="Nombre"
@@ -45,10 +50,10 @@ export default function Formulario ({ onInputChange, onSubmit}) {
             </div>
             <div >
                 <label htmlFor="email" style={{width: '200px'}}></label>
-                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px', margin: '5px'}}
                     type="email"
                     id="email"
-                    placeholder="Tumail@ejemplo.com"
+                    placeholder="tuemail@ejemplo.com"
                     value={email}
                     onChange={(e) => {
                     setEmail(e.target.value);
@@ -59,7 +64,7 @@ export default function Formulario ({ onInputChange, onSubmit}) {
             </div>
             <div>
                 <label htmlFor="contrasena"></label>
-                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px', margin: '5px'}}
                     type="password"
                     id="contrasena"
                     placeholder="Contraseña"
@@ -72,7 +77,7 @@ export default function Formulario ({ onInputChange, onSubmit}) {
             </div>
             <div>
                 <label htmlFor="confirmContrasena"></label>
-                <input style={{ width: '230px', height: '28px', borderRadius: '7px'}}
+                <input style={{ width: '230px', height: '28px', borderRadius: '7px', margin: '5px'}}
                     type="password"
                     id="confirmContrasena"
                     placeholder="Confirmar tu Contraseña"
@@ -84,8 +89,16 @@ export default function Formulario ({ onInputChange, onSubmit}) {
                 />
                 {mensajeErrors.confirmContrasena && <span>{mensajeErrors.confirmContrasena}</span>}
             </div>
+            <button style={{
+                            width: '236px',
+                            height: '28px',
+                            borderRadius: '7px',
+                            border:'solid 1px #000000',
+                            backgroundColor: '#126327',
+                            color: '#ffffff',
+                            }}
+                            type="submit">Registrarse</button>
             <div className=''>
-                <button style={{ width: '230px', height: '28px', borderRadius: '7px'}} type="submit">Registrar</button>
                 {mensajeErrors && <div className="errors-message">{mensajeErrors}</div>}
                 {mensajeExito && <div className="success-message">{mensajeExito}</div>}
             </div>

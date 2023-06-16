@@ -6,7 +6,7 @@ import Alert from './Alert';
 import { FaFacebook, FaTwitter, FaGoogle } from 'react-icons/fa';
 
 export default function Registro() {
-    const [message, setMessage] = useState('null');
+    const [message, setMessage] = useState('');
     const [isFormComplete, setIsFormComplete] = useState(false);
 
     const handleFormSubmit = (event) => {
@@ -27,7 +27,7 @@ export default function Registro() {
     };
 
     return (
-        <div className="card d-flex flex-column "
+        <div className="card d-flex flex-column-center "
             style={{ width: '300px', height: '470px', margin: '12px', border:'solid 1px #000000',
             borderRadius: '26px', textAlign:'center'}}>
             <h2> Crear una Cuenta </h2>
