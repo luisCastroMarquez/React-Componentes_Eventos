@@ -27,8 +27,15 @@ export default function Registro() {
     };
 
     return (
-        <div className="card d-flex flex-column-center" style={{ width: '300px', height: '500px', margin: '12px',
-                                border:'solid 1px #000000', borderRadius: '26px', textAlign:'center',}}>
+        <div className="card d-flex flex-column-center"
+            style={{
+                    width: '300px',
+                    height: '500px',
+                    margin: '12px',
+                    border:'solid 1px #000000',
+                    borderRadius: '26px', textAlign:'center',
+                    backgroundColor: 'white'
+                }}>
             <h2> Crear una Cuenta </h2>
             <SocialButton icon={<FaFacebook/>} />
             <SocialButton icon={<FaTwitter/>}/>

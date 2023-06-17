@@ -9,12 +9,15 @@
 
 }
 
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: rgba(83, 236, 53, 0.479);
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {

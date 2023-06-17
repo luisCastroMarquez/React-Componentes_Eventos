@@ -96,7 +96,6 @@ export default function Formulario ({ onInputChange, onSubmit}) {
                             height: '34px',
                             margin: '7px',
                             borderRadius: '5px',
-                            border:'solid 1px #000000',
                             backgroundColor: '#126327',
                             color: '#ffffff',
                             }}
