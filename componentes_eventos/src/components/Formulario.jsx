@@ -107,7 +107,7 @@ export default function Formulario ({ onInputChange, onSubmit}) {
                             alignItems: 'center',
                             height:'50px',
                             width: '235px',
-                            borderRadius: '5px',
+                            borderRadius: '6px',
                         }}
                     >
 
